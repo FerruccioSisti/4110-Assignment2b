@@ -2,7 +2,7 @@ package test;
 
 /**
 Author: Ferruccio Sisti
-Version 2.0 (Sin, toRadians and toDegrees functions work. 2/3 test cases fail)
+Version 3.0 (Sin, Cos, toRadians and toDegrees functions work. 2/3 of test cases pass.)
 **/
 public class SistiMath
 {
@@ -63,7 +63,29 @@ public class SistiMath
 		//Function calculates the cos(x is given in radians)
 		public double sistiCos(double x)
 		{
-			return 6000.83;
+			// convert x to an angle between -2 PI and 2 PI
+	        x = x % (2 * 3.14157);
+
+	        // compute the Taylor series approximation
+	        double term = 1.0;      // ith term = x^i / i!
+	        double ans  = 1.0;      // sum of first i terms in taylor series
+
+	        //Keep looping until terms are too small to make a difference
+	        //Alternate adding and subtracting, and calculate new term without having
+	        //To actually use pow and factorial functions
+	        for (int i = 1; term != 0.0; i++)
+	        {
+	            term *= (x / i);
+	            if (i % 4 == 0)
+	            	{
+	            		ans += term;
+	            	}
+	            if (i % 4 == 2)
+	            	{
+	            		ans -= term;
+	            	}
+	        }
+	        return ans;
 		}
 
 		//Function calculates the tan(x is given in radians)
@@ -81,7 +103,7 @@ public class SistiMath
 		//Function calculates the cos(x is given in degrees)
 		public double sistiCosDeg(double x)
 		{
-			return 6000.83;
+			return sistiCos(degreeToRad(x));
 		}
 
 		//Function calculates the tan(x is given in degrees)
