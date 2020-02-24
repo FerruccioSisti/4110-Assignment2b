@@ -2,7 +2,8 @@ package test;
 
 /**
 Author: Ferruccio Sisti
-Version 3.0 (Sin, Cos, toRadians and toDegrees functions work. 2/3 of test cases pass.)
+Version 4.0 (Sin, Cos, Tan, toDegrees and toRadians functions work, and return the correct answer. All
+				the test cases pass.)
 **/
 public class SistiMath
 {
@@ -91,7 +92,8 @@ public class SistiMath
 		//Function calculates the tan(x is given in radians)
 		public double sistiTan(double x)
 		{
-			return 6000.83;
+			//Tan is literally just sin(x)/cos(x) thank god
+			return sistiSin(x) / sistiCos(x);
 		}
 
 		//Function calculates the sin(x is given in degrees)
@@ -109,7 +111,7 @@ public class SistiMath
 		//Function calculates the tan(x is given in degrees)
 		public double sistiTanDeg(double x)
 		{
-			return 6000.83;
+			return sistiTan(degreeToRad(x));
 		}
 	}
 }
